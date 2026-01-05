@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEURIVA — Agents IA professionnels</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --bg-soft: #111;
+      --text: #f5f5f5;
+      --text-muted: #a0a0a0;
+      --line: #1f1f1f;
+      --accent: #ffffff;
+      --accent-hover: #ddd;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(11,11,11,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1300px;
+      margin: auto;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-size: 22px;
+    }
+
+    .nav-links a {
+      margin-left: 30px;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero {
+      max-width: 900px;
+    }
+
+    .hero h1 {
+      font-size: 60px;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 20px;
+      margin-bottom: 45px;
+    }
+
+    .cta {
+      padding: 16px 36px;
+      background: var(--accent);
+      color: black;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 16px;
+    }
+
+    .cta:hover {
+      background: var(--accent-hover);
+    }
+
+    section {
+      padding: 140px 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      max-width: 650px;
+      margin-bottom: 70px;
+      font-size: 17px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 50px;
+    }
+
+    .card {
+      padding: 35px;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      transition: 0.3s;
+      border-radius: 12px;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #333;
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    form {
+      max-width: 550px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 16px;
+      margin-bottom: 22px;
+      background: #0e0e0e;
+      border: 1px solid var(--line);
+      color: white;
+      font-size: 15px;
+      border-radius: 6px;
+    }
+
+    textarea {
+      resize: none;
+      height: 140px;
+    }
+
+    footer {
+      padding: 50px 20px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.9s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <div class="logo">NEURIVA</div>
+    <div class="nav-links">
+      <a href="#services">Fonctionnalités</a>
+      <a href="#process">Méthode</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="hero reveal">
+    <h1>Agents IA polyvalents pour entreprises</h1>
+    <p>NEURIVA conçoit des agents intelligents capables de gérer emails, automatisations complexes, analyses de données et tâches répétitives, afin de booster l’efficacité de votre entreprise.</p>
+    <button class="cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Demander une démo</button>
+  </div>
+</header>
+
+<section id="services">
+  <div class="container reveal">
+    <h2 class="section-title">Fonctionnalités multiples</h2>
+    <p class="section-desc">Chaque agent NEURIVA est adaptable et peut accomplir plusieurs tâches simultanément, selon vos besoins précis.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Gestion d’emails</h3>
+        <p>Tri, priorisation, réponses automatiques, notifications personnalisées et suivi intelligent des messages entrants.</p>
+      </div>
+      <div class="card">
+        <h3>Automatisation avancée</h3>
+        <p>Connexion aux outils existants, intégration avec bases de données, rapports automatiques et workflows intelligents.</p>
+      </div>
+      <div class="card">
+        <h3>Analyse & suivi</h3>
+        <p>Extraction d’informations pertinentes, suivi des métriques importantes, création de tableaux de bord dynamiques.</p>
+      </div>
+      <div class="card">
+        <h3>Notifications intelligentes</h3>
+        <p>Alertes sur événements critiques, rappels et escalade automatique vers le responsable adéquat.</p>
+      </div>
+      <div class="card">
+        <h3>Rapports personnalisés</h3>
+        <p>Résumé quotidien ou hebdomadaire, statistiques claires et décisions guidées par l’IA.</p>
+      </div>
+      <div class="card">
+        <h3>Multitâche</h3>
+        <p>Peut gérer simultanément plusieurs processus sans intervention humaine, garantissant rapidité et efficacité.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="container reveal">
+    <h2 class="section-title">Notre méthode</h2>
+    <p class="section-desc">Un déploiement simple, sécurisé et entièrement guidé par vos besoins.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>1. Découverte</h3>
+        <p>Compréhension de vos opérations, vos besoins et vos objectifs précis.</p>
+      </div>
+      <div class="card">
+        <h3>2. Conception sur mesure</h3>
+        <p>Création d’un agent personnalisé, adaptable à vos processus existants.</p>
+      </div>
+      <div class="card">
+        <h3>3. Déploiement autonome</h3>
+        <p>Vous configurez la connexion à vos outils, aucune donnée n’est stockée chez NEURIVA.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container reveal">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-desc">Présentez votre besoin et nous vous répondrons avec une solution adaptée.</p>
+
+    <form>
+      <input type="text" placeholder="Nom de l'entreprise" required />
+      <input type="email" placeholder="Email professionnel" required />
+      <textarea placeholder="Décrivez votre besoin" required></textarea>
+      <button class="cta" type="submit">Envoyer</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  © 2026 NEURIVA — Agents IA polyvalents et professionnels
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  reveals.forEach(r => observer.observe(r));
+</script>
+
+</body>
+</html>
