@@ -1,117 +1,89 @@
-/* =========================================================
-   NEURIVA — Script principal
-   UX sobre, fluide, professionnel
-   ========================================================= */
+// -----------------------------
+// NEURIVA | script.js
+// Gestion formulaire & animations
+// -----------------------------
 
-/* -----------------------------
-   Fade-in au scroll (Intersection Observer)
--------------------------------- */
+document.addEventListener("DOMContentLoaded", () => {
+  // FORMULAIRE
+  const form = document.querySelector("form");
+  const confirmation = document.createElement("p");
+  confirmation.id = "confirmation";
+  confirmation.style.color = "#00ff88";
+  confirmation.style.fontWeight = "bold";
+  confirmation.style.display = "none";
+  confirmation.textContent = "Merci ! Votre message a bien été envoyé.";
+  form.appendChild(confirmation);
 
-const observerOptions = {
-  threshold: 0.15
-};
-
-const fadeObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      observer.unobserve(entry.target);
-    }
+  // Animation focus input
+  const inputs = form.querySelectorAll("input, textarea");
+  inputs.forEach(input => {
+    input.addEventListener("focus", () => {
+      input.style.borderColor = "#00ff88";
+      input.style.boxShadow = "0 0 10px rgba(0, 255, 136, 0.5)";
+      input.style.transition = "all 0.3s ease";
+    });
+    input.addEventListener("blur", () => {
+      input.style.borderColor = "#ccc";
+      input.style.boxShadow = "none";
+    });
   });
-}, observerOptions);
 
-document.querySelectorAll(".fade-in").forEach(el => {
-  fadeObserver.observe(el);
-});
+  // Bouton hover animation
+  const button = form.querySelector("button");
+  button.addEventListener("mouseenter", () => {
+    button.style.backgroundColor = "#00ff88";
+    button.style.color = "#000";
+    button.style.transform = "scale(1.05)";
+    button.style.transition = "all 0.3s ease";
+  });
+  button.addEventListener("mouseleave", () => {
+    button.style.backgroundColor = "#fff";
+    button.style.color = "#000";
+    button.style.transform = "scale(1)";
+  });
 
-/* -----------------------------
-   Scroll fluide vers ancres
--------------------------------- */
+  // Gestion envoi formulaire
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // empêche l’envoi standard
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
       });
+
+      if (response.ok) {
+        confirmation.style.display = "block";
+        form.reset();
+      } else {
+        confirmation.style.display = "block";
+        confirmation.style.color = "red";
+        confirmation.textContent = "Oups ! Une erreur est survenue, veuillez réessayer.";
+      }
+    } catch (error) {
+      confirmation.style.display = "block";
+      confirmation.style.color = "red";
+      confirmation.textContent = "Erreur réseau ! Vérifiez votre connexion et réessayez.";
+      console.error("Erreur formulaire:", error);
     }
   });
-});
 
-/* -----------------------------
-   Navbar : effet subtil au scroll
--------------------------------- */
-
-const navbar = document.querySelector(".navbar");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    navbar.classList.add("navbar-scrolled");
-  } else {
-    navbar.classList.remove("navbar-scrolled");
-  }
-});
-
-/* -----------------------------
-   Sécurité formulaire (front only)
--------------------------------- */
-
-const form = document.querySelector(".contact-form");
-
-if (form) {
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const inputs = form.querySelectorAll("input, textarea");
-    let valid = true;
-
-    inputs.forEach(input => {
-      if (!input.value.trim()) {
-        valid = false;
-        input.classList.add("input-error");
-      } else {
-        input.classList.remove("input-error");
+  // ANIMATION SCROLL
+  const revealElements = document.querySelectorAll(".reveal");
+  const revealOnScroll = () => {
+    const windowHeight = window.innerHeight;
+    revealElements.forEach(el => {
+      const elementTop = el.getBoundingClientRect().top;
+      if (elementTop < windowHeight - 50) {
+        el.classList.add("active");
       }
     });
-
-    if (!valid) return;
-
-    // Simulation envoi (placeholder pro)
-    form.classList.add("form-sent");
-    form.innerHTML = `
-      <p class="form-confirmation">
-        Votre demande a été transmise.<br>
-        Elle sera étudiée avec attention.
-      </p>
-    `;
-  });
-}
-
-/* -----------------------------
-   Protection UX basique
--------------------------------- */
-
-// Désactiver clic droit (optionnel, dissuasion légère)
-document.addEventListener("contextmenu", e => {
-  e.preventDefault();
+  };
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll(); // trigger on load
 });
-
-// Désactiver sélection sur éléments sensibles
-document.querySelectorAll(".logo, h1").forEach(el => {
-  el.style.userSelect = "none";
-});
-
-/* -----------------------------
-   Performance : preload visuel
--------------------------------- */
-
-window.addEventListener("load", () => {
-  document.body.classList.add("loaded");
-});
-
-/* =========================================================
-   Fin du script
-   ========================================================= */
