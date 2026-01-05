@@ -162,26 +162,6 @@
       font-size: 15px;
     }
 
-    form {
-      max-width: 550px;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 16px;
-      margin-bottom: 22px;
-      background: #0e0e0e;
-      border: 1px solid var(--line);
-      color: white;
-      font-size: 15px;
-      border-radius: 6px;
-    }
-
-    textarea {
-      resize: none;
-      height: 140px;
-    }
-
     footer {
       padding: 50px 20px;
       border-top: 1px solid var(--line);
@@ -201,6 +181,17 @@
       transform: translateY(0);
     }
 
+    /* Contact link style */
+    .contact-link {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .contact-link:hover {
+      color: var(--accent-hover);
+    }
   </style>
 </head>
 <body>
@@ -283,14 +274,10 @@
 <section id="contact">
   <div class="container reveal">
     <h2 class="section-title">Contact</h2>
-    <p class="section-desc">Présentez votre besoin et nous vous répondrons avec une solution adaptée.</p>
-
-    <form action="https://formspree.io/f/xkogeejq="POST">
-      <input type="text" placeholder="Nom de l'entreprise" required />
-      <input type="email" placeholder="Email professionnel" required />
-      <textarea placeholder="Décrivez votre besoin" required></textarea>
-      <button class="cta" type="submit">Envoyer</button>
-    </form>
+    <p class="section-desc">Pour toute demande ou démo, contactez-nous directement par email :</p>
+    <p>
+      <a href="mailto:neurivaproai@gmail.com" class="contact-link">neurivaproai@gmail.com</a>
+    </p>
   </div>
 </section>
 
